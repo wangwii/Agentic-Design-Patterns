@@ -1,0 +1,24 @@
+# AGENTS
+
+- Repo type: Markdown-only book. No code, build, tests, or linters are defined. Use plain Markdown editing.
+- Package manager/executor: uv is available in this environment, but this repo has no Python project. Do not install or run anything.
+- Build/lint/test:
+  - Build: none
+  - Lint: none (keep Markdown clean; wrap at ~100 chars)
+  - Test: none; verify links and image paths manually
+  - Single test command: not applicable
+- File organization: content is under numbered folders; assets in `assets/`. Preserve filenames and relative links.
+- Imports/includes: N/A; use standard Markdown links `[text](relative/path.md)` and images `![alt](assets/file.png)`.
+- Formatting:
+  - Use ATX headers (#, ##, ###). One H1 per file.
+  - Leave a blank line around headers, lists, and images. Use fenced code blocks with language hints when needed.
+  - Keep lines under ~100 chars; no trailing spaces; Unix newlines.
+- Types: N/A; this is prose. Prefer concise, technical tone. Avoid emojis unless explicitly requested.
+- Naming conventions: keep existing filename patterns; do not rename or re-number chapters. New files: follow existing `Section/Chapter_Title-<id>.md` style if truly necessary.
+- Error handling: when changing links, verify targets exist. Do not commit broken links or missing assets. If unsure, add a short note and TODO.
+- Cursor/Copilot rules: none found (`.cursor/rules/`, `.cursorrules`, `.github/copilot-instructions.md` absent). If added later, follow them.
+- Git hygiene:
+  - Commit small, focused changes with clear messages (why > what).
+  - Do not commit large binary assets unless needed. Preserve MIT LICENSE.
+- Accessibility: add meaningful alt text to images; avoid text-only color semantics.
+- Review checklist before commit: links resolve, images render, headings hierarchy valid, no stray HTML, no merge conflict markers.
