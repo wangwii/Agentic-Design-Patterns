@@ -2,6 +2,8 @@
 
 This repository contains the full text of the book "Agentic Design Patterns" by Antonio Gulli and Mauro Sauco. The content has been compiled and organized by Tom Mathews  for easy access and reference for the community.
 
+![Agentic Design Patterns - Book Cover](assets/Agentic_Design_Patterns_Book_Cover.png)
+
 ## Authorship and Credit
 
 - **Authors:** [Antonio Gulli](https://www.linkedin.com/in/searchguy/) and [Mauro Sauco](https://www.linkedin.com/in/maurosauco/)
@@ -85,9 +87,12 @@ This book answers all that with patterns you can actually apply. The 70+ page ap
 - [Appendix B: AI Agentic Interactions: From GUI to Real-World Environment](05-Appendix/Appendix_B-AI_Agentic_Interactions_From_GUI_to_Real_World_Environment-11pma_tCoC7uZ2SFKjcR5KyIq0_ooMGSoadI6f9mxG2I.md)
 - [Appendix C: Quick Overview of Agentic Frameworks](05-Appendix/Appendix_C-Quick_Overview_of_Agentic_Frameworks-151rGsiEYOkXUcNDRus_N8TxxuvjoyTDViBhzt9z0Mfw.md)
 - [Appendix D: Building an Agent with AgentSpace (online only)](05-Appendix/Appendix_D-Building_an_Agent_with_AgentSpace_(on_line_only)-1bDRJ8mKtLTeWNC-cGD0Cr8pEJQgJHNcjqz5ekloAjaE.md)
+- [Appendix E - AI Agents on the CLI](05-Appendix/Appendix_E-AI_Agents_on_the_CLI-1W4znto0a8Ikajw5a4tEyRAaB2nJPJw_iFc4w4qNnjho.md)
 - [Appendix F: Under the Hood: An Inside Look at the Agent's Reasoning Engines](05-Appendix/Appendix_F-Under_the_Hood_An_Inside_Look_at_the_Agents_Reasoning_Engines-14q3fQ-FZmDgiughno_WLSILMWkURvUgR7mlGiFtvwd4.md)
 - [Appendix G: Coding Agents](05-Appendix/Appendix_G-Coding_Agents-1tVyhgwrD4fu_D_pHUrwhNxoguRG3tLc1KObXFxrxE_s.md)
 
 ## License
 
 This repository is licensed under the [MIT License](LICENSE).
+
+![Agentic Design Patterns](assets/Agentic_Design_Patterns.png)
