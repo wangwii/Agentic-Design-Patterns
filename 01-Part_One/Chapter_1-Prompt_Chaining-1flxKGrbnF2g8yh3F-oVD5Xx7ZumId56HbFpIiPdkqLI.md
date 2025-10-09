@@ -19,13 +19,26 @@ The significance of prompt chaining extends beyond simple problem-solving. It se
 **单一提示词的局限性：** 对于多层面的任务，使用单个复杂的 LLM 提示词会效率很低，并导致模型难以应对约束和指令，从而引起：“指令忽视（即部分提示丢失）”、“上下文漂移（即模型失去对出生上下文的追踪）”、“错误传播（即早期错误被放大）”、“提示需要更大的上下文窗口（即模型无法获得足够的信息来做出回应）”，以及“幻觉（即认知负荷增加了错误信息的概率）”。例如，一个要求分析市场调研报告、总结调研结果、利用数据识别趋势以及起草一封电子邮件的任务可能会失败，因为模型可能总结得很好，但却无法提取数据，或不能正确起草电子邮件。
 
 
-**Enhanced Reliability Through Sequential Decomposition:** Prompt chaining addresses these challenges by breaking the complex task into a focused, sequential workflow, which significantly improves reliability and control. Given the example above, a pipeline or chained approach can be described as follows:
+**Enhanced Reliability Through Sequential Decomposition:** Prompt chaining addresses these challenges by breaking the complex task into a focused, sequential workflow, which significantly improves reliability and control. 
+**(按逻辑)顺序的(提示词)分解提升可靠性：** 提示链通过将复杂任务分解为一个更聚焦的、按顺序逻辑的工作流程来应对（单一提示词的局限性）挑战，并显著提高了可靠性和可控性。
 
-1. Initial Prompt (Summarization): "Summarize the key findings of the following market research report: \[text\]." The model's sole focus is summarization, increasing the accuracy of this initial step.  
-2. Second Prompt (Trend Identification): "Using the summary, identify the top three emerging trends and extract the specific data points that support each trend: \[output from step 1\]." This prompt is now more constrained and builds directly upon a validated output.  
+
+Given the example above, a pipeline or chained approach can be described as follows:
+综上所述，管道模式或提示链方法可以被描述如下：
+1. Initial Prompt (Summarization): "Summarize the key findings of the following market research report: \[text\]." The model's sole focus is summarization, increasing the accuracy of this initial step.
+1. 初始提示（摘要）：“总结一下市场报告的主要发现：[(市场报告内容举例)文本]。” 该步骤的唯一关注点是“总结”，从而提高初始步骤的准确性。
+   
+2. Second Prompt (Trend Identification): "Using the summary, identify the top three emerging trends and extract the specific data points that support each trend: \[output from step 1\]." This prompt is now more constrained and builds directly upon a validated output.
+2. 第二提示词（趋势识别）：“使用摘要，识别3个新兴的主要趋势，并提取支持每个趋势的具体数据点：[步骤1的输出]。” 该提示受到更多限制且直接构建于经过验证的输出。
+   
 3. Third Prompt (Email Composition): "Draft a concise email to the marketing team that outlines the following trends and their supporting data: \[output from step 2\]."
+3. 第三提示词（撰写邮件）：“给市场营销团队起草一封简洁的电子邮件，概述以下趋势及其支持数据：[步骤2的输出]。” 
 
 This decomposition allows for more granular control over the process. Each step is simpler and less ambiguous, which reduces the cognitive load on the model and leads to a more accurate and reliable final output. This modularity is analogous to a computational pipeline where each function performs a specific operation before passing its result to the next. To ensure an accurate response for each specific task, the model can be assigned a distinct role at every stage. For example, in the given scenario, the initial prompt could be designated as "Market Analyst," the subsequent prompt as "Trade Analyst," and the third prompt as "Expert Documentation Writer," and so forth.
+这种分步骤拆解允许对（处理）过程进行更精细的控制。每个步骤更简单并更为明确，这会减少 AI模型的认知负担并带来更准确和可靠的最终输出。
+这种模块化类似计算流水线，其中每个（处理节点/）函数执行（简单/明确的）特定操作并将其处理结果传递给下一个（处理节点/函数）。
+这种方法还可以为不同阶段（特定任务的处理模型）分配不同的角色，已获得更准确的响应。例如：在以上示例场景中，“初始提示词（摘要）”阶段可指定（角色）为“市场分析师”；“第二提示词（趋势识别）”阶段指定角色为“交易分析师”；“第三提示词（撰写邮件）”阶段指定（角色）为“专业文档撰写人”，依此类推。
+
 
 **The Role of Structured Output:** The reliability of a prompt chain is highly dependent on the integrity of the data passed between steps. If the output of one prompt is ambiguous or poorly formatted, the subsequent prompt may fail due to faulty input. To mitigate this, specifying a structured output format, such as JSON or XML, is crucial.
 
