@@ -3,19 +3,27 @@
 ## Prompt Chaining Pattern Overview
 
 Prompt chaining, sometimes referred to as Pipeline pattern, represents a powerful paradigm for handling intricate tasks when leveraging large language models (LLMs). Rather than expecting an LLM to solve a complex problem in a single, monolithic step, prompt chaining advocates for a divide-and-conquer strategy. The core idea is to break down the original, daunting problem into a sequence of smaller, more manageable sub-problems. Each sub-problem is addressed individually through a specifically designed prompt, and the output generated from one prompt is strategically fed as input into the subsequent prompt in the chain.
+
+
 提示链是一种利用大语言模型（LLMs)处理复杂任务的有效方式，有时也被称为管道模式。该范式的核心是“分而治之”策略——即将原本复杂的问题分解成一系列更小、更易于管理的子问题序列，再针对每个子问题精心设计提示词，并将前一个问题的输出作为下一步任务的输入，从而形成“链式”依赖。
 
 This sequential processing technique inherently introduces modularity and clarity into the interaction with LLMs. By decomposing a complex task, it becomes easier to understand and debug each individual step, making the overall process more robust and interpretable. Each step in the chain can be meticulously crafted and optimized to focus on a specific aspect of the larger problem, leading to more accurate and focused outputs.
 The output of one step acting as the input for the next is crucial. This passing of information establishes a dependency chain, hence the name, where the context and results of previous operations guide the subsequent processing. This allows the LLM to build on its previous work, refine its understanding, and progressively move closer to the desired solution.
 Furthermore, prompt chaining is not just about breaking down problems; it also enables the integration of external knowledge and tools. At each step, the LLM can be instructed to interact with external systems, APIs, or databases, enriching its knowledge and abilities beyond its internal training data. This capability dramatically expands the potential of LLMs, allowing them to function not just as isolated models but as integral components of broader, more intelligent systems.
+
+
 这种按顺序处理（子问题）的技术，将“模块化”和“清晰性”引入了与大语言模型（LLMs)交互的过程中。通过拆解复杂的任务，让每个单独的步骤变的更易于理解、更稳健。（针对子问题）序列中的每个步骤都可以精心设计和优化，聚焦于原始问题的特定方面，从而获得更准确、更聚焦的输出。
 （其中前）一步的输出作为下一步的输入至关重要，因为这种信息传递建立了“依赖链”，（形成了）先前操作的上下文和处理结果指导后续处理（的效果），这使得大语言模型（LLM）能够在其先前的工作基础上，完善其理解并逐步接近（用户）期望的解决方案。
 而且，提示链模式不仅仅是分解问题，它还能整合外部的知识和工具，在每个（子问题的）处理步骤中，大语言模型（LLM）都可以按指令与外部系统、APIs 或数据库进行交互，从而超越其内部训练数据以外的知识和能力。这种能力极大地扩展了 LLM 的潜力，使其不仅能作为独立的模型发挥作用，还能成为更广泛、更智能系统的组成部分。
 
 The significance of prompt chaining extends beyond simple problem-solving. It serves as a foundational technique for building sophisticated AI agents. These agents can utilize prompt chains to autonomously plan, reason, and act in dynamic environments. By strategically structuring the sequence of prompts, an agent can engage in tasks requiring multi-step reasoning, planning, and decision-making. Such agent workflows can mimic human thought processes more closely, allowing for more natural and effective interactions with complex domains and systems.
+
+
 提示链范式的意义超越了简单的解决问题，而是构建复杂 AI 智能体的基础技术。这些智能体可以利用提示链模式在动态环境中自主规划、推理和行动。通过策略性的构建提示序列，智能体可以执行需要多步骤推理、规划和决策的任务。这样智能体的工作流程可以更紧密地模拟人类的思维过程，从而实现与复杂领域和系统更自然、更有效的交互。
 
 **Limitations of single prompts:** For multifaceted tasks, using a single, complex prompt for an LLM can be inefficient, causing the model to struggle with constraints and instructions, potentially leading to instruction neglect where parts of the prompt are overlooked, contextual drift where the model loses track of the initial context, error propagation where early errors amplify, prompts which require a longer context window where the model gets insufficient information to respond back and hallucination where the cognitive load increases the chance of incorrect information. For example, a query asking to analyze a market research report, summarize findings, identify trends with data points, and draft an email risks failure as the model might summarize well but fail to extract data or draft an email properly.
+
+
 **单一提示词的局限性：** 对于多层面的任务，使用单个复杂的 LLM 提示词会效率很低，并导致模型难以应对约束和指令，从而引起：“指令忽视（即部分提示丢失）”、“上下文漂移（即模型失去对出生上下文的追踪）”、“错误传播（即早期错误被放大）”、“提示需要更大的上下文窗口（即模型无法获得足够的信息来做出回应）”，以及“幻觉（即认知负荷增加了错误信息的概率）”。例如，一个要求分析市场调研报告、总结调研结果、利用数据识别趋势以及起草一封电子邮件的任务可能会失败，因为模型可能总结得很好，但却无法提取数据，或不能正确起草电子邮件。
 
 
@@ -35,6 +43,8 @@ Given the example above, a pipeline or chained approach can be described as foll
 3. 第三提示词（撰写邮件）：“给市场营销团队起草一封简洁的电子邮件，概述以下趋势及其支持数据：[步骤2的输出]。” 
 
 This decomposition allows for more granular control over the process. Each step is simpler and less ambiguous, which reduces the cognitive load on the model and leads to a more accurate and reliable final output. This modularity is analogous to a computational pipeline where each function performs a specific operation before passing its result to the next. To ensure an accurate response for each specific task, the model can be assigned a distinct role at every stage. For example, in the given scenario, the initial prompt could be designated as "Market Analyst," the subsequent prompt as "Trade Analyst," and the third prompt as "Expert Documentation Writer," and so forth.
+
+
 这种分步骤拆解允许对（处理）过程进行更精细的控制。每个步骤更简单并更为明确，这会减少 AI模型的认知负担并带来更准确和可靠的最终输出。
 这种模块化类似计算流水线，其中每个（处理节点/）函数执行（简单/明确的）特定操作并将其处理结果传递给下一个（处理节点/函数）。
 这种方法还可以为不同阶段（特定任务的处理模型）分配不同的角色，已获得更准确的响应。例如：在以上示例场景中，“初始提示词（摘要）”阶段可指定（角色）为“市场分析师”；“第二提示词（趋势识别）”阶段指定角色为“交易分析师”；“第三提示词（撰写邮件）”阶段指定（角色）为“专业文档撰写人”，依此类推。
